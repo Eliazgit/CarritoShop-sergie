@@ -18,6 +18,7 @@ export const CarritoProvider = ({ children }) => {
 				return state.map(item => {
 					const cant = item.cantidad + 1
 					if (item.id === action.payload) return { ...item, cantidad: cant }
+					return item
 				})
 
 
@@ -73,9 +74,6 @@ export const CarritoProvider = ({ children }) => {
 		}
 		dispatch(action)
 	}
-
-
-
 
 	return (
 

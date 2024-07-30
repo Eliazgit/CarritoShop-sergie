@@ -6,7 +6,7 @@ export const CarritoPage = () =>{
 	const { ListaCompras, aumentarCantidad, disminuirCantidad, eliminarCompra } = useContext(CarritoContext)
 
 	const calcularTotal = () => {
-		return ListaCompras.reduce((total, item) => total + item.price * item.cantidad, 0).tofixed(2)
+		return ListaCompras.reduce((total, item) => total + item.price * item.cantidad, 0).toFixed(2)
 	}
 
 
@@ -30,12 +30,12 @@ export const CarritoPage = () =>{
 						ListaCompras.map(item => (
 
 							<tr key={item.id}>
-								<th>{item.title}</th>
+								<td>{item.title}</td>
 								<td>{item.price}</td>
 								<td>
-									<button className='btn btn-outline-primary' onClick={aumentarCantidad}>+</button>
+									<button className='btn btn-ouline-primary' onClick={() => disminuirCantidad(item.id)}>-</button>
 									<button className='btn btn-primary'>{item.cantidad} </button>
-									<button className='btn btn-outline-primary' onClick={disminuirCantidad}>-</button>
+									<button className='btn btn-ouline-primary' onClick={() => aumentarCantidad(item.id)}>+</button>
 
 
 								</td>
@@ -43,19 +43,20 @@ export const CarritoPage = () =>{
 									type='button'
 									className='btn btn-danger'
 									onClick={() => eliminarCompra(item.id)}
-
-								></button></td>
+								>Eliminar</button></td>
 							</tr>
 						))
 					}
-
+					<tr>
 					<th><b>TOTAL:</b></th>
 					<td></td>
 					<td>${calcularTotal()} </td>
 					<td></td>
+					</tr>
 
 				</tbody>
 			</table>
+
 			<div className='d-grid gap-2'>
 				<button
 					className='btn btn-primary'
